@@ -1,51 +1,51 @@
-import { useState } from "react"
-import { searchForShows } from "../api/tvmaze"
+import { useState } from 'react';
+import { searchForShows, searchForPeople } from '../api/tvmaze';
+import SearchForm from '../components/SearchForm';
 
 const Home = () => {
-    const [searchStr, setSearchStr] = useState('')
-    const [apiData, setApiData] = useState(null)
-    const [apiDataError, setApiDataError] = useState(null)
 
-    const handleSearchChange = (event) => {
-        setSearchStr(event.target.value)
-    }
+    const [apiData, setApiData] = useState(null);
+    const [apiDataError, setApiDataError] = useState(null);
 
-    const onSearch = async (event) => {
+    const onSearch = async ({ q, searchOption }) => {  //q stands for query
 
         try {
-            setApiDataError(null)
-            event.preventDefault()
-            const result = await searchForShows(searchStr)
-            setApiData(result)
+            setApiDataError(null);
+            let result;
+            if (searchOption === 'shows') {
+                result = await searchForShows(q);
+            }
+            else {
+                result = await searchForPeople(q);
+
+            }
+            setApiData(result);
+
+        } catch (error) {
+            setApiDataError(error);
         }
-        catch (error) {
-            setApiDataError(error)
-        }
-    }
+    };
 
     const renderApiData = () => {
-
         if (apiDataError) {
-            return <div>Error Ocurred : {apiDataError.message}</div>
+            return <div>Error Ocurred : {apiDataError.message}</div>;
         }
         if (apiData) {
-            return apiData.map(data => (
+            return apiData[0].show ? apiData.map(data => (
                 <div key={data.show.id}>{data.show.name}</div>
+            )) : apiData.map(data => (
+                <div key={data.person.id}>{data.person.name}</div>
             ))
         }
-        return null
-    }
+        return null;
+    };
 
     return (
         <div>
-            <form onSubmit={onSearch}>
-                <button type="submit" >Search</button>
-                <input type="text" onChange={handleSearchChange} />
-            </form>
+            <SearchForm onSearch={onSearch} />
             <div>{renderApiData()}</div>
         </div>
-    )
+    );
+};
 
-}
-
-export default Home
+export default Home;
