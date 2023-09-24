@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom"
 const Starred = () => {
     return (
         <div>
-            <Link to="/">Go to Home</Link>
+            <h1>This is Starred Page</h1>
         </div>
     )
 }
