@@ -4,6 +4,7 @@ import SearchForm from '../components/SearchForm';
 import ActorGrid from '../components/actors/ActorGrid';
 import ShowGrid from '../components/shows/ShowGrid';
 import { useQuery } from '@tanstack/react-query'
+import { TextCenter } from '../components/common/TextCenter';
 
 
 const Home = () => {
@@ -28,12 +29,12 @@ const Home = () => {
 
     const renderApiData = () => {
         if (apiDataError) {
-            return <div>Error Ocurred : {apiDataError.message}</div>;
+            return <TextCenter>Error Ocurred : {apiDataError.message}</TextCenter>;
         }
 
         // When apiData is an empty array due to any gibberrish input --> undefined case
         if (apiData?.length === 0) { //Optional chaining is used to prevent any fear of null data causing errors
-            return <div>No results</div>
+            return <TextCenter>No results</TextCenter>
         }
 
         //When there is an actual apiData

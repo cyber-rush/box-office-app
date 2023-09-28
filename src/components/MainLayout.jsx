@@ -1,10 +1,13 @@
 import Navs from './Navs';
 import { Outlet } from 'react-router-dom';
+import AppTitle from './shows/AppTitle';
 const MainLayout = () => {
   return (
     <>
-      {' '}
-      <h1>Box Office</h1>
+      <AppTitle
+        title="Box Office"
+        subtitle="Are you looking for a movie or an actor?"
+      />
       <Navs />
       <Outlet />
     </>
