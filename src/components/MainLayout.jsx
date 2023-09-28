@@ -5,8 +5,8 @@ const MainLayout = () => {
     <>
       {' '}
       <h1>Box Office</h1>
-      <Outlet />
       <Navs />
+      <Outlet />
     </>
   );
 };

@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "@tanstack/react-query": "^4.35.3",
+    "components": "^0.1.0",
     "cra-template-pwa": "2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.16.0",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "styled": "^1.0.0",
+    "styled-components": "^6.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
