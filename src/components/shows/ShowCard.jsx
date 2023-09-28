@@ -1,5 +1,5 @@
 
-const ShowCard = ({ name, image, summary, id, onStarMeClick }) => {
+const ShowCard = ({ name, image, summary, id, onStarMeClick, isStarred }) => {
     // split the summary into an array , take first 10 elements, then join those 10 elements , and then replace the html tags
     const summaryStripped = summary ? summary.split(' ').slice(0, 10).join(' ').replace(/<.+?>/g, '') : 'No description     '
     return <div>
@@ -10,7 +10,7 @@ const ShowCard = ({ name, image, summary, id, onStarMeClick }) => {
         <p>{summaryStripped}</p>
         <div>
             <a href={`show/${id}`} target="_blank" rel="noreferrer">Read More</a>
-            <button type="button" onClick={() => onStarMeClick(id)}>Star me!!!</button>
+            <button type="button" onClick={() => onStarMeClick(id)}>{isStarred ? 'Unstar me' : 'Star me'}</button>
         </div>
     </div>
 }
