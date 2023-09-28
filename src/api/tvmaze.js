@@ -11,3 +11,9 @@ export const searchForShows = query => apiGet(`/search/shows/?q=${query}`);
 export const searchForPeople = query => apiGet(`/search/people/?q=${query}`);
 
 export const getShowById = showId => apiGet(`/shows/${showId}?embed[]=seasons&embed[]=cast`)
+
+export const getShowsByIds = async showIds => {
+    const promises = showIds.map(showId => apiGet(`/shows/${showId}`)) //multiple req to the tvmaze servers at the same time
+
+    return Promise.all(promises)
+}
