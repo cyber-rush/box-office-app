@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { SearchImgWrapper, SearchCard } from '../common/SearchCard'
 import { StarIcon } from "../common/StarIcon"
 import { useRef } from "react"
+import { Link } from "react-router-dom"
 
 const ShowCard = ({ name, image, summary, id, onStarMeClick, isStarred }) => {
     // split the summary into an array , take first 10 elements, then join those 10 elements , and then replace the html tags
@@ -30,7 +31,9 @@ const ShowCard = ({ name, image, summary, id, onStarMeClick, isStarred }) => {
         <h1 >{name}</h1>
         <p>{summaryStripped}</p>
         <ActionSection>
-            <a href={`show/${id}`} target="_blank" rel="noreferrer">Read More</a>
+            <Link to={`show/${id}`} target="_blank" rel="noreferrer">
+                Read More
+            </Link>
             <StarBtn
                 ref={starBtnRef}
                 type="button"
